@@ -4,7 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Currículum Personal - Sara García Sánchez</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module">
+    import { install } from 'https://esm.sh/@twind/core@1.1.3';
+    import presetTailwind from 'https://esm.sh/@twind/preset-tailwind@1.1.4';
+    import presetTypography from 'https://esm.sh/@twind/preset-typography@1.0.7';
+
+    install({
+      presets: [
+        presetTailwind(),
+        presetTypography()
+      ],
+    });
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@600&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
