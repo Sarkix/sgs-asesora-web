@@ -22,7 +22,7 @@ export const HeroSection = React.forwardRef<HTMLElement, HeroSectionProps>((prop
     >
       <div className="w-full md:w-5/12 bg-[#F8F5F0] flex items-center justify-center p-6 md:p-0 order-1 md:order-none">
         <img
-          src="https://sgsasesora.netlify.app/assets/Hero_section-2.png"
+          src="https://sgsasesora.netlify.app/public/assets/Hero_section-2.png"
           alt="Sara García Sánchez"
           className="w-full max-w-[280px] sm:max-w-[320px] md:max-w-[350px] lg:max-w-[400px] h-auto object-contain shadow-xl"
         />
