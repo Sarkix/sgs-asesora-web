@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Link } from 'wouter';
 import { NavItem } from '../types';
 
 interface SidebarProps {
@@ -14,15 +13,14 @@ export const Sidebar: React.FC<SidebarProps> = ({ name, navItems, onLinkClick, c
   return (
     <aside className={className}>
       {/* Name is shown in mobile header, so hide it here on smaller screens if sidebar is part of main layout */}
-      <Link href="/">
-        <a 
-          onClick={onLinkClick}
-          className="text-3xl text-[#3D3A37] mb-12 sm:mb-16 hidden md:block font-outfit-title text-left focus:outline-none"
-          aria-label="Ir a la página de inicio"
-        >
-          {name}
-        </a>
-      </Link>
+      <a 
+        href="#home"
+        onClick={onLinkClick}
+        className="text-3xl text-[#3D3A37] mb-12 sm:mb-16 hidden md:block font-outfit-title text-left focus:outline-none"
+        aria-label="Ir a la página de inicio"
+      >
+        {name}
+      </a>
       {/* Using a placeholder for mobile top padding, if needed when name is not shown always */}
       <div className="md:hidden h-16"></div> {/* Spacer for mobile header if name is not shown */}
 

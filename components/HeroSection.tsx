@@ -18,7 +18,8 @@ export const HeroSection = React.forwardRef<HTMLElement, HeroSectionProps>((prop
   return (
     <section 
       ref={ref} 
-      className="flex flex-col md:flex-row min-h-[80vh] md:min-h-screen"
+      id="home"
+      className="flex flex-col md:flex-row min-h-[80vh] md:min-h-screen scroll-mt-16"
     >
       <div className="w-full md:w-5/12 bg-[#F8F5F0] flex items-center justify-center p-6 md:p-0 order-1 md:order-none">
         <img

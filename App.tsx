@@ -90,11 +90,9 @@ const App: React.FC = () => {
     <Router>
       {showSidebarAndMobileHeader && (
         <header className="md:hidden fixed top-0 left-0 right-0 z-40 bg-[#F8F5F0] shadow-md p-4 flex justify-between items-center h-16">
-          <Link href="/">
-            <a className="text-xl text-[#3D3A37] focus:outline-none font-outfit-title flex items-center">
-              {personalName}
-            </a>
-          </Link>
+          <a href="#home" className="text-xl text-[#3D3A37] focus:outline-none font-outfit-title flex items-center">
+            {personalName}
+          </a>
           <button 
             onClick={toggleSidebar} 
             className="text-[#A97155] px-2 focus:outline-none focus:ring-2 focus:ring-[#A97155] rounded flex items-center" 
