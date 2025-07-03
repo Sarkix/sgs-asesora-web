@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import { Link } from 'wouter';
 import { NavItem } from '../types';
@@ -29,17 +28,20 @@ export const Sidebar: React.FC<SidebarProps> = ({ name, navItems, onLinkClick, c
 
 
       <nav className="flex flex-col space-y-4 sm:space-y-5">
-        {navItems.map((item) => (
-          <Link key={item.id} href={`/#${item.id}`}>
+        {navItems.map((item) => {
+          // Use standard <a> tags for hash links to scroll on the same page for all items.
+          return (
             <a
+              key={item.id}
+              href={`#${item.id}`}
               onClick={onLinkClick}
               className="text-left text-lg text-[#A97155] hover:text-[#3D3A37] transition-colors duration-200 focus:outline-none font-chiron-sidebar uppercase"
               aria-label={`Navegar a ${item.name}`}
             >
               {item.name}
             </a>
-          </Link>
-        ))}
+          );
+        })}
       </nav>
     </aside>
   );
