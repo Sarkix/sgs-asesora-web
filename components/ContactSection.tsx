@@ -1,4 +1,5 @@
 
+
 import React, { useCallback, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { contactSectionText, personalEmail, socialLinks } from '../constants';
@@ -13,7 +14,7 @@ const SectionTitle: React.FC<{ title: string }> = ({ title }) => (
 
 // --- START: Form Component Logic (inlined for simplicity) ---
 
-const FormInput: React.FC<{ id: string, label: string, type?: string, value: string, onChange: (e: React.ChangeEvent<HTMLInputElement>) => void, error?: string, required?: boolean }> = ({ id, label, type = 'text', value, onChange, error, required = false }) => (
+const FormInput: React.FC<{ id: string, label: string, type?: string, value: string, onChange: (e: React.ChangeEvent<HTMLInputElement>) => void, required?: boolean }> = ({ id, label, type = 'text', value, onChange, required = false }) => (
   <div>
     <label htmlFor={id} className="block text-sm font-medium text-[#3D3A37] mb-1">
       {label}
@@ -25,15 +26,12 @@ const FormInput: React.FC<{ id: string, label: string, type?: string, value: str
       value={value}
       onChange={onChange}
       required={required}
-      className={`w-full px-3 py-2 bg-white border ${error ? 'border-red-500' : 'border-[#D1C7B8]'} rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#A97155] focus:border-[#A97155] transition`}
-      aria-invalid={!!error}
-      aria-describedby={error ? `${id}-error` : undefined}
+      className={`w-full px-3 py-2 bg-white border border-[#D1C7B8] rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#A97155] focus:border-[#A97155] transition`}
     />
-    {error && <p id={`${id}-error`} className="mt-1 text-xs text-red-600">{error}</p>}
   </div>
 );
 
-const FormTextarea: React.FC<{ id: string, label: string, value: string, onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void, error?: string, required?: boolean }> = ({ id, label, value, onChange, error, required = false }) => (
+const FormTextarea: React.FC<{ id: string, label: string, value: string, onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void, required?: boolean }> = ({ id, label, value, onChange, required = false }) => (
   <div>
     <label htmlFor={id} className="block text-sm font-medium text-[#3D3A37] mb-1">
       {label}
@@ -45,61 +43,65 @@ const FormTextarea: React.FC<{ id: string, label: string, value: string, onChang
       value={value}
       onChange={onChange}
       required={required}
-      className={`w-full px-3 py-2 bg-white border ${error ? 'border-red-500' : 'border-[#D1C7B8]'} rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#A97155] focus:border-[#A97155] transition`}
-      aria-invalid={!!error}
-      aria-describedby={error ? `${id}-error` : undefined}
+      className={`w-full px-3 py-2 bg-white border border-[#D1C7B8] rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#A97155] focus:border-[#A97155] transition`}
     />
-    {error && <p id={`${id}-error`} className="mt-1 text-xs text-red-600">{error}</p>}
   </div>
 );
 
 const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [errors, setErrors] = useState<{ name?: string, email?: string, message?: string }>({});
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    if (errors[name as keyof typeof errors]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }));
-    }
   };
 
-  const validateForm = () => {
-    const newErrors: { name?: string, email?: string, message?: string } = {};
-    if (!formData.name.trim()) newErrors.name = 'El nombre es obligatorio.';
-    if (!formData.email.trim()) {
-      newErrors.email = 'El correo electrónico es obligatorio.';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'El formato del correo electrónico no es válido.';
-    }
-    if (!formData.message.trim()) newErrors.message = 'El mensaje es obligatorio.';
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!validateForm()) return;
+    setError(false);
+    setSubmitted(false);
 
-    setStatus('sending');
-    // Simulate API call
-    setTimeout(() => {
-      setStatus('success');
+    const form = e.target as HTMLFormElement;
+    const netlifyFormData = new FormData(form);
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(netlifyFormData as any).toString(),
+    })
+    .then(() => {
+      setSubmitted(true);
       setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setStatus('idle'), 5000); 
-    }, 2000);
+    })
+    .catch(() => {
+      setError(true);
+    });
   };
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-4">
+    <form 
+      name="contact" 
+      method="POST" 
+      data-netlify="true" 
+      data-netlify-honeypot="bot-field"
+      onSubmit={handleSubmit} 
+      className="space-y-4"
+    >
+      {/* This input is required for Netlify to identify the form submission */}
+      <input type="hidden" name="form-name" value="contact" />
+      <p hidden>
+        <label>
+          Don’t fill this out if you’re human: <input name="bot-field" />
+        </label>
+      </p>
+
       <FormInput
         id="name"
         label="Nombre"
         value={formData.name}
         onChange={handleChange}
-        error={errors.name}
         required
       />
       <FormInput
@@ -108,7 +110,6 @@ const ContactForm: React.FC = () => {
         type="email"
         value={formData.email}
         onChange={handleChange}
-        error={errors.email}
         required
       />
       <FormTextarea
@@ -116,25 +117,22 @@ const ContactForm: React.FC = () => {
         label="Mensaje"
         value={formData.message}
         onChange={handleChange}
-        error={errors.message}
         required
       />
       <div>
         <button
           type="submit"
-          disabled={status === 'sending' || status === 'success'}
+          disabled={submitted}
           className="w-full bg-[#A97155] text-white py-3 px-6 rounded-md font-semibold hover:bg-opacity-80 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#A97155] focus:ring-offset-2 focus:ring-offset-[#EAE3D9] disabled:bg-opacity-50 disabled:cursor-not-allowed"
         >
-          {status === 'sending' && 'Enviando...'}
-          {status === 'success' && '¡Mensaje Enviado!'}
-          {(status === 'idle' || status === 'error') && 'Enviar Mensaje'}
+          {submitted ? '¡Mensaje Enviado!' : 'Enviar Mensaje'}
         </button>
       </div>
-       {status === 'success' && (
+       {submitted && (
         <p className="text-sm text-green-700 text-center mt-2">Gracias por tu mensaje. Te responderé lo antes posible.</p>
       )}
-      {status === 'error' && (
-        <p className="text-sm text-red-700 text-center mt-2">Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo.</p>
+      {error && (
+        <p className="text-sm text-red-700 text-center mt-2">Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo o contáctame por email.</p>
       )}
     </form>
   );
