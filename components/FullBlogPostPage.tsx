@@ -1,4 +1,5 @@
 
+
 import React, { useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
 import { BlogPost } from '../types';
@@ -49,11 +50,11 @@ export const FullBlogPostPage: React.FC<FullBlogPostPageProps> = ({ uid, posts, 
 
   return (
     <div className="min-h-screen bg-[#F8F5F0] text-[#3D3A37] antialiased">
-      <header className="bg-[#EAE3D9] py-6 px-4 sm:px-8 md:px-16 shadow-md">
+      <header className="bg-[#EAE3D9] py-4 px-4 sm:px-8 md:px-16 shadow-md">
         <div className="container mx-auto flex justify-between items-center">
            <Link href="/">
               <a
-                className="text-xl sm:text-2xl text-[#3D3A37] font-outfit-title focus:outline-none"
+                className="text-xl text-[#3D3A37] font-outfit-title focus:outline-none"
                 aria-label="Volver a la página de inicio"
               >
                 {personalName}
@@ -61,10 +62,10 @@ export const FullBlogPostPage: React.FC<FullBlogPostPageProps> = ({ uid, posts, 
            </Link>
           <Link href="/blog">
             <a
-              className="flex items-center text-[#A97155] hover:text-[#3D3A37] font-semibold py-2 px-4 rounded-md transition-colors duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A97155] whitespace-nowrap"
+              className="flex items-center text-sm text-[#A97155] hover:text-[#3D3A37] font-semibold py-2 px-3 rounded-md transition-colors duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A97155] whitespace-nowrap"
               aria-label="Volver a todas las entradas del blog"
             >
-              <ArrowLeftIcon className="w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-0.5 group-focus-visible:-translate-x-0.5" />
+              <ArrowLeftIcon className="w-4 h-4 mr-1.5 transition-transform duration-200 group-hover:-translate-x-0.5 group-focus-visible:-translate-x-0.5" />
               Volver al Blog
             </a>
           </Link>
