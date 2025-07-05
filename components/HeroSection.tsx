@@ -37,12 +37,13 @@ export const HeroSection = React.forwardRef<HTMLElement, HeroSectionProps>((prop
                    xl:pt-16 xl:pb-16 
                    flex flex-col justify-center relative order-none md:order-1"
       >
-        <div className="absolute top-8 right-8 sm:top-10 sm:right-10 md:top-12 md:right-12 w-16 h-16 sm:w-20 sm:h-20 bg-[#A97155] rounded-full opacity-80"></div>
+        <div className="absolute top-8 right-8 sm:top-10 sm:right-10 md:top-12 md:right-12 w-16 h-16 sm:w-20 sm:h-20 bg-[#A97155] rounded-full opacity-80 max-[260px]:hidden"></div>
         
         {/* Wrapper for all content to be vertically centered as a group */}
         <div>
           <div
-            className="pl-8 pr-28 
+            className="max-[260px]:px-6
+                      pl-8 pr-28 
                       sm:pl-12 sm:pr-36 
                       md:pl-16 md:pr-36 
                       lg:pl-20 lg:pr-36 
