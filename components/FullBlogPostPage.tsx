@@ -1,5 +1,6 @@
 
 
+
 import React, { useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
 import { BlogPost } from '../types';
@@ -94,7 +95,7 @@ export const FullBlogPostPage: React.FC<FullBlogPostPageProps> = ({ uid, posts, 
             />
 
             <div 
-              className="prose prose-sm sm:prose-base max-w-none text-[#5A5653] leading-relaxed prose-headings:text-[#3D3A37] prose-a:text-[#A97155] hover:prose-a:text-[#3D3A37] prose-strong:text-[#3D3A37]"
+              className="prose max-w-none text-[#5A5653] leading-relaxed prose-headings:text-[#3D3A37] prose-a:text-[#A97155] hover:prose-a:text-[#3D3A37] prose-strong:text-[#3D3A37]"
               dangerouslySetInnerHTML={{ __html: contentHtml }}
             />
           </div>
