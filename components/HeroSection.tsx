@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 // import { socialLinks, personalEmail } from '../constants'; // No longer needed here
 
@@ -37,7 +38,7 @@ export const HeroSection = React.forwardRef<HTMLElement, HeroSectionProps>((prop
                    xl:pt-16 xl:pb-16 
                    flex flex-col justify-center relative order-none md:order-1"
       >
-        <div className="absolute top-8 right-8 sm:top-10 sm:right-10 md:top-12 md:right-12 w-16 h-16 sm:w-20 sm:h-20 bg-[#A97155] rounded-full opacity-80 max-[260px]:hidden"></div>
+        <div className="absolute top-8 right-8 sm:top-10 sm:right-10 md:top-12 md:right-12 w-16 h-16 sm:w-20 sm:h-20 bg-[#A97155] rounded-full opacity-80 max-[260px]:hidden md:hidden lg:block"></div>
         
         {/* Wrapper for all content to be vertically centered as a group */}
         <div>
@@ -45,9 +46,8 @@ export const HeroSection = React.forwardRef<HTMLElement, HeroSectionProps>((prop
             className="max-[260px]:px-6
                       pl-8 pr-28 
                       sm:pl-12 sm:pr-36 
-                      md:pl-16 md:pr-36 
-                      lg:pl-20 lg:pr-36 
-                      xl:pl-20 xl:pr-36"
+                      md:px-20 
+                      lg:pl-20 lg:pr-36"
           >
             <h1 
               className="font-serif text-4xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl font-medium text-[#3D3A37] mb-6 md:mb-8 z-10"
