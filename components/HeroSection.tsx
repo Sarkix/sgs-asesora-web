@@ -20,43 +20,41 @@ export const HeroSection = React.forwardRef<HTMLElement, HeroSectionProps>((prop
     <section 
       ref={ref} 
       id="home"
-      className="flex flex-col md:flex-row min-h-[80vh] md:min-h-screen scroll-mt-16"
+      className="flex flex-col lg:flex-row min-h-[80vh] lg:min-h-screen scroll-mt-16"
     >
-      <div className="w-full md:w-5/12 bg-[#F8F5F0] flex items-center justify-center p-6 md:p-0 order-1 md:order-none">
+      <div className="w-full lg:w-5/12 bg-[#F8F5F0] flex items-center justify-center p-6 lg:p-0 order-1 lg:order-none">
         <img
           src="/assets/Hero_section-2.png"
           alt="Sara García Sánchez"
-          className="w-full max-w-[280px] sm:max-w-[320px] md:max-w-[350px] lg:max-w-[400px] h-auto object-contain shadow-xl"
+          className="w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[400px] h-auto object-contain shadow-xl"
         />
       </div>
       <div 
-        className="w-full md:w-7/12 bg-[#EAE3D9] 
+        className="w-full lg:w-7/12 bg-[#EAE3D9] 
                    pt-8 pb-8 
                    sm:pt-12 sm:pb-12 
-                   md:pt-10 md:pb-10 
                    lg:pt-12 lg:pb-12 
                    xl:pt-16 xl:pb-16 
-                   flex flex-col justify-center relative order-none md:order-1"
+                   flex flex-col justify-center relative order-none lg:order-1"
       >
-        <div className="absolute top-8 right-8 sm:top-10 sm:right-10 md:top-12 md:right-12 w-16 h-16 sm:w-20 sm:h-20 bg-[#A97155] rounded-full opacity-80 max-[260px]:hidden md:hidden lg:block"></div>
+        <div className="absolute top-8 right-8 sm:top-10 sm:right-10 lg:top-12 lg:right-12 w-16 h-16 sm:w-20 sm:h-20 bg-[#A97155] rounded-full opacity-80 max-[260px]:hidden md:hidden lg:block"></div>
         
         {/* Wrapper for all content to be vertically centered as a group */}
         <div>
           <div
-            className="max-[260px]:px-6
-                      pl-8 pr-28 
-                      sm:pl-12 sm:pr-36 
-                      md:px-20 
-                      lg:pl-20 lg:pr-36"
+            className="px-6 
+                      sm:px-12 
+                      md:px-20
+                      lg:pl-28 lg:pr-36"
           >
             <h1 
-              className="font-serif text-4xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl font-medium text-[#3D3A37] mb-6 md:mb-8 z-10"
+              className="font-serif text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-medium text-[#3D3A37] mb-6 lg:mb-8 z-10"
               style={{ lineHeight: '1.2' }}
             >
               Asesora jurídica especializada en <span className="underline decoration-2 decoration-[#A97155] underline-offset-8">Función Pública</span>
             </h1>
             
-            <div className="text-base sm:text-lg lg:text-xl text-[#5A5653] mb-8 md:mb-10 z-10 space-y-4">
+            <div className="text-base sm:text-lg lg:text-xl text-[#5A5653] mb-8 lg:mb-10 z-10 space-y-4">
               {introParagraphs.map((paragraph, index) => (
                 <p 
                   key={index}
@@ -68,7 +66,7 @@ export const HeroSection = React.forwardRef<HTMLElement, HeroSectionProps>((prop
             </div>
           </div>
 
-          <div className="w-full flex justify-center mt-8 md:mt-12 lg:mt-16">
+          <div className="w-full flex justify-center mt-8 lg:mt-16">
             <button
               onClick={onNavigateToContact}
               className="bg-[#A97155] text-white py-3 px-8 rounded-md text-base sm:text-lg font-semibold hover:bg-opacity-80 transition-opacity duration-200 focus:outline-none focus:ring-2 focus:ring-[#A97155] focus:ring-offset-2 focus:ring-offset-[#EAE3D9] z-10"
