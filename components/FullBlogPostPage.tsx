@@ -95,7 +95,7 @@ export const FullBlogPostPage: React.FC<FullBlogPostPageProps> = ({ uid, posts, 
             />
 
             <div 
-              className="prose max-w-none text-[#5A5653] leading-relaxed prose-headings:text-[#3D3A37] prose-a:text-[#A97155] hover:prose-a:text-[#3D3A37] prose-strong:text-[#3D3A37]"
+              className="prose prose-lg max-w-none text-[#5A5653] leading-relaxed prose-headings:text-[#3D3A37] prose-a:text-[#A97155] hover:prose-a:text-[#3D3A37] prose-strong:text-[#3D3A37]"
               dangerouslySetInnerHTML={{ __html: contentHtml }}
             />
           </div>
