@@ -12,17 +12,20 @@ interface SidebarProps {
 export const Sidebar: React.FC<SidebarProps> = ({ name, navItems, onLinkClick, className }) => {
   return (
     <aside className={className}>
-      {/* Name is shown in mobile header, so hide it here on smaller screens if sidebar is part of main layout */}
-      <a 
-        href="#home"
-        onClick={onLinkClick}
-        className="text-3xl text-[#3D3A37] mb-12 sm:mb-16 hidden md:block font-outfit-title text-left focus:outline-none"
-        aria-label="Ir a la página de inicio"
-      >
-        {name}
-      </a>
-      {/* Using a placeholder for mobile top padding, if needed when name is not shown always */}
-      <div className="md:hidden h-16"></div> {/* Spacer for mobile header if name is not shown */}
+      {/* Name is shown on desktop, but hidden on mobile where it appears in the header. */}
+      <div className="hidden md:block">
+        <a 
+          href="#home"
+          onClick={onLinkClick}
+          className="text-3xl text-[#3D3A37] mb-12 sm:mb-16 font-outfit-title text-left focus:outline-none"
+          aria-label="Ir a la página de inicio"
+        >
+          {name}
+        </a>
+      </div>
+      
+      {/* Spacer for mobile header if name is not shown */}
+      <div className="md:hidden h-16"></div> {/* Spacer for mobile header */}
 
 
       <nav className="flex flex-col space-y-4 sm:space-y-5">
